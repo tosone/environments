@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles,withStyles } from '@material-ui/core/styles';
+
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,58 +17,58 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Checkbox from '@material-ui/core/Checkbox';
 import CardActions from '@material-ui/core/CardActions';
-import environments from "./resources/environments.json";
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 
+import environments from "./resources/environments.json";
+
 const drawerWidth = 170;
 
 const BootstrapButton = withStyles({
     root: {
-      boxShadow: 'none',
-      textTransform: 'none',
-      fontSize: 14,
-      marginRight: '4px',  
-      marginTop: '5px',
-      lineHeight: 1.5,
-      backgroundColor: '#0069d9',
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(','),
-      '&:hover': {
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 14,
+        marginRight: '4px',
+        marginTop: '5px',
+        lineHeight: 1.5,
         backgroundColor: '#0069d9',
-        borderColor: '#0062cc',
-        boxShadow: 'none',
-      },
-      '&:active': {
-        boxShadow: 'none',
-        backgroundColor: '#0062cc',
-        borderColor: '#005cbf',
-      },
-      '&:focus': {
-        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-      },
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
     },
-  })(Button);
-  
+})(Button);
+
 const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(1),
     },
     root: {
         display: 'flex',
-        height: '270px',
         width: '220px',
     },
     appBar: {
@@ -128,24 +129,24 @@ export default function Environments() {
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                <Avatar alt="fission environments"  src="./logo/fission-env.png" />
-                    <Typography variant="h5" noWrap style={{paddingLeft : '5px', fontWeight : 'bold'}}>
-                        fission environments
-          </Typography>
+                    <Avatar alt="fission environments" src="./logo/fission-env.png" />
+                    <Typography variant="h5" noWrap style={{ paddingLeft: '15px', fontWeight: 'bold' }}>
+                        Fission environments
+                    </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer   
+            <Drawer
                 className={classes.drawer}
                 variant="permanent"
                 classes={{
                     paper: classes.drawerPaper,
-                }}                
+                }}
             >
                 <Toolbar />
-                <Typography variant="subtitle1" noWrap style={{padding : '10px', alignItems: 'center'}}>
-                        Select environments
+                <Typography variant="subtitle1" noWrap style={{ padding: '10px', alignItems: 'center' }}>
+                    Select environments
                 </Typography>
-                <Divider/>
+                <Divider />
                 <div className={classes.drawerContainer}>
                     <List dense className={classes.checkBox}>
                         <ListItem key='all' button>
@@ -185,11 +186,10 @@ export default function Environments() {
             </Drawer>
             <main className={classes.content}>
                 <Toolbar />
-                <Grid container spacing={4}>{
+                <Grid container spacing={3}>{
                     environments.map(function (envs) {
                         return envs.map((env, index) => {
                             const value = env.name.split(' ')[0];
-                            //Show only checked cards
                             if (checked.indexOf('all') > -1 || checked.indexOf(value) > -1) {
                                 return (
                                     <Grid item key={index}>
@@ -197,19 +197,18 @@ export default function Environments() {
                                             <CardActionArea href={env.readme}>
                                                 <CardMedia
                                                     style={{
-                                                        objectFit: 'fill',
+                                                        objectFit: 'contain',
                                                         height: '100px',
-                                                        paddingLeft: '5px',
-                                                        paddingRight: '5px',
-                                                        paddingTop: '5px'
+                                                        padding: '10px'
                                                     }}
                                                     component="img"
                                                     alt="Contemplative Reptile"
-                                                    height="140"
+                                                    height="140px"
                                                     image={env.icon}
                                                     title="Contemplative Reptile"
                                                 />
                                                 <CardContent style={{
+                                                    height: '100px',
                                                     paddingLeft: '15px',
                                                     paddingRight: '10px',
                                                     paddingTop: '3px',
@@ -224,15 +223,15 @@ export default function Environments() {
                                                 </CardContent>
                                                 <CardActions >
                                                     <div>
-                                                        <div style={{padding: '2px'}}> 
-                                                        <Chip size="small" label={env.status} style={{marginRight:'5px',  background: '#2196f3' , color: 'white'}} />
-                                                        <Chip size="small" label={env.runtimeVersion} style={{marginRight:'5px',background: "cadetblue" , color: 'white'}}/>
+                                                        <div style={{ padding: '2px' }}>
+                                                            <Chip size="small" label={env.status} style={{ marginRight: '5px', background: '#2196f3', color: 'white' }} />
+                                                            <Chip size="small" label={env.runtimeVersion} style={{ marginRight: '5px', background: "cadetblue", color: 'white' }} />
                                                         </div>
                                                         <div>
                                                         </div>
                                                         <div>
-                                                        <BootstrapButton href={env.readme} variant="contained" size="small" color="primary">Learn more</BootstrapButton>    
-                                                        <BootstrapButton href={env.examples} variant="contained" size="small" color="primary">Examples</BootstrapButton>
+                                                            <BootstrapButton href={env.readme} variant="contained" size="small" color="primary">Learn more</BootstrapButton>
+                                                            <BootstrapButton href={env.examples} variant="contained" size="small" color="primary">Examples</BootstrapButton>
                                                         </div>
                                                     </div>
                                                 </CardActions>
